@@ -1,207 +1,383 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+    <meta charset="utf-8" />
+    <title>王听科技</title>
+    <meta name="author" content="John Doe" />
+    <meta name="description" content="工作室在2024年7月成立" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
 
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+<script src="/js/lib/home.js"></script>
+
+<link rel="stylesheet" href="/css/main.css" />
 
 <meta name="generator" content="Hexo 7.3.0"></head>
-
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>王听科技</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;首页</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;关于</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;归档</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;分类</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;标签</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;王听科技</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">首页</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">关于</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">归档</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">分类</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">标签</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div id="home-head">
+    <div
+        id="home-background"
+        ref="homeBackground"
+        data-images="/images/background.jpg"
+    ></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>王听科技</h1>
+                <h3>王听科技带你畅想科技</h3>
+                <h5>工作室在2024年7月成立</h5>
+            </div>
+        </span>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+</div>
+<div
+    id="home-posts-wrap"
+    ref="homePostsWrap"
+    true
+>
+    <div id="home-posts">
         
-          <a class="main-nav-link" href="/">Home</a>
+
+<div class="post">
+    <a href="/2025/05/31/%E6%B3%B0%E6%8B%89%E7%91%9E%E4%BA%9A/">
+        <h2 class="post-title">泰拉瑞亚</h2>
+    </a>
+    <div class="category-and-date">
         
-          <a class="main-nav-link" href="/archives">Archives</a>
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/5/31
+        </span>
         
-      </nav>
-      <nav id="sub-nav">
         
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
     </div>
-  </div>
-</header>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="更新与优化"><a href="#更新与优化" class="headerlink" title="更新与优化"></a>更新与优化</h1><p>泰拉瑞亚1.4.5在2025年5月30日分布的更新内容</p>
+<ol>
+<li><p>武器与装备</p>
+<p>引入了 4 种新鞭子，如瓦斯卡什鞭、灵魂鞭等；添加了扔掷用的橡子弹弓、发射豌豆的豌豆射手等新武器。还新增了多种死灵法杖和长剑，以及ähk 的新物品，如ähk 的长剑等。</p>
+</li>
+<li><p>物品与家具</p>
+<p>新增了云平台、发光方块、月光方块等家具；添加了可以放在地上的永久宠物，如气球动物、微型飞碟等；引入了可伸缩的猫爪梯、可抓取方块的磁力手套等物品。</p>
+</li>
+<li><p>宠物与坐骑</p>
+<p>新增了可从鱼缸中获得的河豚宠物、会自动砍树的 cen axe 宠物、由史莱姆掉落的史莱姆宠物等。</p>
+</li>
+<li><p>敌人与事件</p>
+<p>添加了云史莱姆、荧光史莱姆等新敌人；引入了陨石淋浴、闪电打击等新事件</p>
+</li>
+<li><p>音乐与音效</p>
+<p>为史莱姆主题地牢、日食和月食等事件以及多种敌人和 boss 添加了新音乐和音效。</p>
+</li>
+<li><p>小游戏</p>
+<p>高尔夫模式新增了 4 个新球、3 个新俱乐部和 2 个新场地。</p>
+<h4 id="游戏机制改进"><a href="#游戏机制改进" class="headerlink" title="游戏机制改进"></a>游戏机制改进</h4></li>
+<li><p>战斗与属性</p>
+<p>增加了新武器PREFIX，如传奇、上古等，提升了武器的多样化和策略性。攻击敌人时有概率获得 “着火了！”、“中毒了！” 等 Debuff 的视觉和伤害效果。</p>
+</li>
+<li><p>建筑与探索</p>
+<p>玩家对墙壁使用胶水时会发出新声音，增强了游戏的沉浸感。调整了–;</p>
+</li>
+</ol>
+<h4 id="外观与视觉效果更新"><a href="#外观与视觉效果更新" class="headerlink" title="外观与视觉效果更新"></a>外观与视觉效果更新</h4><ol>
+<li><p>角色与物品</p>
+<p>角色的受伤音效可自定义，包括僵尸的呻吟、机器人的滴滴声和经典的游戏音效等选项。更新了月球套、南瓜套等的外观和动画效果，以及蜂蜜套、仙人掌套等。</p>
+</li>
+<li><p>环境与特效</p>
+<p>添加了新的太阳和云朵视觉效果、环境昆虫等细节。游戏中出现了彩虹、北极光和流星等视觉效果。</p>
+</li>
+</ol>
+<h4 id="修复与优化"><a href="#修复与优化" class="headerlink" title="修复与优化"></a>修复与优化</h4><ol>
+<li><p>游戏性能</p>
+<p>修复了低图形设置下的一些视觉效果问题，如液体流动等，提高了游戏的性能和稳定性。</p>
+</li>
+<li><p>游戏内容</p>
+<p>修复了 boss 掉落位置错误、事件触发条件不正确、物品图标缺失等大量 bug，提升了游戏的完整性和体验感。</p>
+</li>
+</ol>
 
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/05/31/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2025-05-30T19:27:34.198Z" itemprop="datePublished">2025-05-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/05/31/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
+            
+        </div>
     </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/05/31/hello-world/" data-id="cmbb75cr60000sou8cngjdrlv" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
+    <div class="post-tags">
         
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/05/">May 2025</a></li></ul>
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E6%9B%B4%E6%96%B0/" style="color: #03a9f4">更新</a>
+        </span>
+        
     </div>
-  </div>
+    <a href="/2025/05/31/%E6%B3%B0%E6%8B%89%E7%91%9E%E4%BA%9A/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2025/05/31/%E7%8E%8B%E5%90%AC%E7%A7%91%E6%8A%80/">
+        <h2 class="post-title">王听科技</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2025/5/31
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="QQ交流群"><a href="#QQ交流群" class="headerlink" title="QQ交流群"></a>QQ交流群</h1><ol>
+<li><h3 id="QQ群链接"><a href="#QQ群链接" class="headerlink" title="QQ群链接"></a>QQ群链接</h3><h4 id="在这里哦群链接"><a href="#在这里哦群链接" class="headerlink" title="在这里哦群链接"></a>在这里哦<a target="_blank" rel="noopener" href="https://qun.qq.com/universal-share/share?ac=1&authKey=UtW1075uuiQ3BNXba+8WaPDR/PQ0mx97nZtoeAtufIoQt/2Q7AUbj9VNXzXHDYEu&busi_data=eyJncm91cENvZGUiOiI5OTM3MDQzNTYiLCJ0b2tlbiI6IkwvTzg1dDIyeTkzSUV4Y1RUL1VzMFVVdmk5UnFlOVYyd1p3cTRXOWlTVGpBNjlBdkNrcTU4ZXl4Mzlmb0U5aTQiLCJ1aW4iOiIxOTI3ODQ4Mzc4In0=&data=Ui15x4OIGvJqen7Gian5nVuv9UqZsXTb4Jq2X1lq4q10zEFKIA7z99wy5dXCJRB11FqvNeJb7SIAcoTGgfmNNA&svctype=4&tempid=h5_group_info">群链接</a></h4></li>
+<li><h3 id="QQ群介绍"><a href="#QQ群介绍" class="headerlink" title="QQ群介绍"></a>QQ群介绍</h3></li>
+</ol>
+<p>工作室创始人V1   v1成立以泰拉瑞亚和我的世界服务器插件和服务器问题的交流群<br>本群介入DeepSpeek机器人可以回答你的问题</p>
+<ol start="3">
+<li><h3 id="进群规则"><a href="#进群规则" class="headerlink" title="进群规则"></a>进群规则</h3></li>
+</ol>
+<p>【禁止】刷屏、斗图、搞颜色!<br>1.你的大多数问题可以及时在官方wiki找到答案：<a target="_blank" rel="noopener" href="https://terraria.fandom.com/zh/wiki/Terraria_Wiki">链接</a><br>2.各种存档导入、备份、国际服国服转换、修改难度、修改人物装备、点亮地图等建议下载存档编辑器：<a target="_blank" rel="noopener" href="https://tr-save-editor.top/">链接</a><br>3.获取地图的全景图：<a target="_blank" rel="noopener" href="https://qun.qq.com/universal-share/share?ac=1&authKey=My8xvNRQnDCG1Az9w1BujS0a6IciXIY6ziR3WUFaMB9/7ArdKI4D4x0nBpofJsY1&busi_data=eyJncm91cENvZGUiOiI2NTYxMDkyMzIiLCJ0b2tlbiI6IkQ5ekZmSkV2RWlIREVGcXQrREhvL09OemdDYi8vQmZlZGx0bHJORnNlREJwT1lUQUdhWEV5WGJQTjErN1E0YkMiLCJ1aW4iOiIxOTI3ODQ4Mzc4In0=&data=ruOSAQf4jcKlR5HcmqUa3hg1RfwU2U_7tcFBdiUIycm97eh0HMTjV1KUWub5B16mtTsf7-_jkPyrq0nT4mo5dA&svctype=4&tempid=h5_group_info">链接</a><br>4.国服请自行到TapTap购买，国服无法和国际服、端游联机。<br>5.如果以上工具&#x2F;网站无法解决你的问题，也欢迎在群里提问，大家一起讨论o(〃&#039;▽&#039;〃)o<br>【禁止】刷屏、斗图、搞颜色!<br>附:【纯小白教程】最快存档导入教程<a target="_blank" rel="noopener" href="https://b23.tv/rjgqtC5">链接</a><br>【禁止】刷屏、斗图、搞颜色!<br>【禁止】刷屏、斗图、搞颜色!<br>【禁止】刷屏、斗图、搞颜色!<br>【禁止】刷屏、斗图、搞颜色!</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
+        
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/%E7%8E%8B%E5%90%AC/" style="color: #00a596">王听</a>
+        </span>
+        
+    </div>
+    <a href="/2025/05/31/%E7%8E%8B%E5%90%AC%E7%A7%91%E6%8A%80/" class="go-post">阅读全文</a>
+</div>
 
 
-  
+        <div class="page-current">
     
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2025/05/31/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+    <span class="current">1</span>
+    
+    
+    
+    
+</div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2025 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
-  </div>
+    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">John Doe</div>
+        <div class="description">
+            <p>Description<br>…</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://argvchs.github.io">Argvchs</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2025 王听科技
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;John Doe
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
 </footer>
 
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
     </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
+    <script src="/js/main.js"></script>
     
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
 </body>
 </html>
